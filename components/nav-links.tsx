@@ -2,7 +2,6 @@ import Link from "next/link";
 import { SidebarGroup, SidebarGroupLabel, SidebarMenuButton } from "./ui/sidebar";
 import { IconLayoutDashboard, IconList, IconHistory, IconDeviceDesktop } from '@tabler/icons-react';
 import { usePathname } from 'next/navigation'
-import { Button } from "./ui/button";
 
 const links = [
     {
@@ -10,16 +9,16 @@ const links = [
             {
                 title: "Overview",
                 item: [
-                    { title: "Dashboard", href: "/dashboard", icon: <IconLayoutDashboard /> },
+                    { title: "Dashboard", href: "/help-desk/dashboard", icon: <IconLayoutDashboard /> },
 
                 ],
             },
             {
                 title: "IT Management",
                 item: [
-                    { title: "Inventory", href: "/dashboard/inventory", icon: <IconDeviceDesktop /> },
-                    { title: "Job Queue", href: "/dashboard/job-queue", icon: <IconList /> },
-                    { title: "History", href: "/dashboard/history", icon: <IconHistory /> },
+                    { title: "Inventory", href: "/help-desk/inventory", icon: <IconDeviceDesktop /> },
+                    { title: "Job Queue", href: "/help-desk/job-queue", icon: <IconList /> },
+                    { title: "History", href: "/help-desk/history", icon: <IconHistory /> },
                 ],
             },
         ]
@@ -28,7 +27,8 @@ const links = [
 
 export function NavLinks() {
     const pathname = usePathname();
-    
+    const isActive = "border-l-2 border-solid border-blue-500 bg-blue-50 text-indigo-500"
+
     return (
         <>
             {links[0].navMain.map((navItem) => {
@@ -39,8 +39,7 @@ export function NavLinks() {
                             <div className="flex flex-col gap-4">
                                 {navItem.item.map((link) => {
                                     return (
-                                        // <Button asChild key={link.title} variant={pathname === link.href ? "default" : "secondary"}></Button>
-                                        <SidebarMenuButton asChild key={link.title} className={pathname === link.href ? "text-gray-700" : "bg-blue-50 text-blue-700"}>
+                                        <SidebarMenuButton asChild key={link.title} className={pathname === link.href ? isActive : ""}>
                                             <Link href={link.href} className="flex gap-2 text-gray-700">
                                                 {link.icon}
                                                 {link.title}
