@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { usersTable } from '@/app/db/schema';
 import { drizzle } from 'drizzle-orm/neon-http';
+import { redirect } from 'next/navigation';
 
 export async function GET() {
     const db = drizzle(process.env.DATABASE_URL!);
@@ -8,16 +9,22 @@ export async function GET() {
     return NextResponse.json(users)
 }
 
-// export async function POST() {
-//     const db = drizzle(process.env.DATABASE_URL!);
- 
-//     // const users: typeof usersTable.$inferInsert = {
-//     //     job: FormData.get("job") as string,
-//     //     assignee: 'sd',
-//     //     priority: 'john@example.com',
-//     //     status: 'das'
-//     // };
+export async function POST(request: Request) {
+    const db = drizzle(process.env.DATABASE_URL!);
+    const body = await request.json();
 
-//     // await db.insert(usersTable).values(users);
-//     // return NextResponse.json(users)
-// }
+    const users: typeof usersTable.$inferInsert = {
+        job: body.job ?? '',
+        assignee: body.assignee ?? '',
+        priority: body.priority ?? '',
+        status: body.status ?? '',
+    };
+
+    await db.insert(usersTable).values(users);
+
+    return new Response(JSON.stringify(users), {
+        status: 201,
+        headers: { 'Content-Type': 'application/json' },
+        
+    });
+}

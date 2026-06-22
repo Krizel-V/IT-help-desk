@@ -6,7 +6,6 @@ import {
     getCoreRowModel,
     useReactTable,
 } from "@tanstack/react-table"
-
 import {
     Table,
     TableBody,
@@ -15,6 +14,16 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import {
+    Item,
+    ItemActions,
+    ItemContent,
+    ItemTitle,
+} from "@/components/ui/item"
+
+import { Button } from "@/components/ui/button";
+
+import AddNew from "./queue-actions/add-new"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -32,49 +41,62 @@ export function DataTable<TData, TValue>({
     })
 
     return (
-        <div className="overflow-hidden rounded-md border">
-            <Table>
-                <TableHeader className="bg-[#f8f8ff]">
-                    {table.getHeaderGroups().map((headerGroup) => (
-                        <TableRow key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => {
-                                return (
-                                    <TableHead key={header.id}>
-                                        {header.isPlaceholder
-                                            ? null
-                                            : flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext()
-                                            )}
-                                    </TableHead>
-                                )
-                            })}
-                        </TableRow>
-                    ))}
-                </TableHeader>
+        <div className="flex flex-col gap-5">
+            {/* Add New Job Button */}
+            <div>
+                <Item variant="outline">
+                    <ItemContent>
+                        <ItemTitle>Add a new Job</ItemTitle>
+                    </ItemContent>
+                    <ItemActions>
+                        <AddNew />
+                    </ItemActions>
+                </Item>
+            </div>
+            <div className="overflow-hidden rounded-md border">
+                <Table>
+                    <TableHeader className="bg-[#f8f8ff]">
+                        {table.getHeaderGroups().map((headerGroup) => (
+                            <TableRow key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => {
+                                    return (
+                                        <TableHead key={header.id}>
+                                            {header.isPlaceholder
+                                                ? null
+                                                : flexRender(
+                                                    header.column.columnDef.header,
+                                                    header.getContext()
+                                                )}
+                                        </TableHead>
+                                    )
+                                })}
+                            </TableRow>
+                        ))}
+                    </TableHeader>
 
-                <TableBody>
-                    {table.getRowModel().rows?.length ? (
-                        table.getRowModel().rows.map((row) => (
-                            <TableRow
-                                key={row.id}
-                                data-state={row.getIsSelected() && "selected"}>
+                    <TableBody>
+                        {table.getRowModel().rows?.length ? (
+                            table.getRowModel().rows.map((row) => (
+                                <TableRow
+                                    key={row.id}
+                                    data-state={row.getIsSelected() && "selected"}>
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell key={cell.id}>
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </TableCell>
                                     ))}
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={columns.length} className="h-24 text-center">
+                                    No results.
+                                </TableCell>
                             </TableRow>
-                        ))
-                    ) : (
-                        <TableRow>
-                            <TableCell colSpan={columns.length} className="h-24 text-center">
-                                No results.
-                            </TableCell>
-                        </TableRow>
-                    )}
-                </TableBody>
-            </Table>
+                        )}
+                    </TableBody>
+                </Table>
+            </div>
         </div>
     )
 }

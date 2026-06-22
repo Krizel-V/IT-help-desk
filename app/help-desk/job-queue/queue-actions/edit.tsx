@@ -25,19 +25,6 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Queue } from "../columns"
 
-async function insertData(): Promise<Queue[]> {
-    const res = await fetch("http://localhost:3000/api/users", {
-        method: "POST",
-    });
-
-    if (!res.ok) {
-        const text = await res.text();
-        console.error(text);
-        throw new Error(`API Error: ${res.status}`);
-    }
-
-    return res.json();
-}
 
 export default function EditQueue({queue}:{queue:Queue}) {
 
@@ -50,7 +37,7 @@ export default function EditQueue({queue}:{queue:Queue}) {
     const prioType = color as keyof typeof colors;
     return (
         <Dialog>
-            <form onSubmit = {insertData}>
+            <form>
                 <DialogTrigger>Edit</DialogTrigger>
                 <DialogContent className="sm:max-w-sm">
                     <DialogHeader>

@@ -19,7 +19,7 @@ export default async function JobQueuePage() {
     const data = await getData()
 
     return (
-        <div className="container mx-auto py-5">
+        <div className="container mx-auto">
             <DataTable columns={columns} data={data} />
         </div>
     )
