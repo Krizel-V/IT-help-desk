@@ -1,7 +1,7 @@
 import { UiSidebar } from '@/components/app-sidebars';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
-export default function AppSidebar({ children }: { children: React.ReactNode }) {
+export default function AppSidebar({ children, modal }: { children: React.ReactNode; modal: React.ReactNode }) {
   return (
     <SidebarProvider>
       <UiSidebar />
@@ -9,6 +9,7 @@ export default function AppSidebar({ children }: { children: React.ReactNode }) 
         <SidebarTrigger />
         <div className="flex border-t-1 w-full h-full p-5">
           {children}
+          {modal}
         </div>
       </main>
     </SidebarProvider>

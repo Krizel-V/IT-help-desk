@@ -34,10 +34,10 @@ export function DataTable<TData, TValue>({
     return (
         <div className="overflow-hidden rounded-md border">
             <Table>
-                <TableHeader>
-                    {table.getHeaderGroups().map((headerG) => (
-                        <TableRow key={headerG.id}>
-                            {headerG.headers.map((header) => {
+                <TableHeader className="bg-[#f8f8ff]">
+                    {table.getHeaderGroups().map((headerGroup) => (
+                        <TableRow key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => {
                                 return (
                                     <TableHead key={header.id}>
                                         {header.isPlaceholder

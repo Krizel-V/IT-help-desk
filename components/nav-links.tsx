@@ -27,7 +27,7 @@ const links = [
 
 export function NavLinks() {
     const pathname = usePathname();
-    const isActive = "border-l-2 border-solid border-blue-500 bg-blue-50 text-indigo-500"
+    const isActive = "border-l-2 border-solid border-indigo-700 bg-indigo-100 text-indigo-700"
 
     return (
         <>
@@ -40,7 +40,7 @@ export function NavLinks() {
                                 {navItem.item.map((link) => {
                                     return (
                                         <SidebarMenuButton asChild key={link.title} className={pathname === link.href ? isActive : ""}>
-                                            <Link href={link.href} className="flex gap-2 text-gray-700">
+                                            <Link href={link.href} className="flex gap-2">
                                                 {link.icon}
                                                 {link.title}
                                             </Link>
