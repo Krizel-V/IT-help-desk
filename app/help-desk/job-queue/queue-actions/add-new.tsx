@@ -29,16 +29,15 @@ export default function AddNew() {
     const [open, setOpen] = useState(false);
     const [priority, setPrio] = useState("");
     const router = useRouter();
-
+    const formData = new FormData();
     async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
         e.preventDefault();
-        const form = e.currentTarget;
-
         const body = {
-            job: (form.elements.namedItem("job") as HTMLInputElement).value,
-            assignee: (form.elements.namedItem("assignee") as HTMLInputElement).value,
+            ...Object.fromEntries(new FormData(e.currentTarget)), //use this to get all fields automatically
+            // job: formData.get("job"),
+            // assignee: formData.get("assignee"),
             priority,
-            status: (form.elements.namedItem("status") as HTMLInputElement).value,
+            // status: formData.get("status"),
         };
 
         const res = await fetch("/api/users", {
@@ -47,31 +46,23 @@ export default function AddNew() {
             body: JSON.stringify(body),
         });
 
-        if (!res.ok) {
-            console.error(await res.text());
-            return;
-        }
+        if (!res.ok) return console.error(await res.text());
 
         setOpen(false);
         router.refresh();
         router.push("/help-desk/job-queue");
     }
-
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <Button asChild>
                 <DialogTrigger>+</DialogTrigger>
             </Button>
             <DialogContent className="sm:max-w-sm">
-                <DialogHeader>
+                <DialogHeader className="border-b pb-3">
                     <DialogTitle>Enter Job Details</DialogTitle>
-                    {/* <DialogDescription>
-                            Make changes to your profile here. Click save when you&apos;re
-                            done.
-                        </DialogDescription> */}
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
-                    <FieldGroup>
+                    <FieldGroup className="pb-10">
                         <Field>
                             <Label htmlFor="job">Job</Label>
                             <Input id="job" name="job" defaultValue="" />

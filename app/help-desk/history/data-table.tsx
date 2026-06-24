@@ -21,8 +21,6 @@ import {
     ItemTitle,
 } from "@/components/ui/item"
 
-import AddNew from "./queue-actions/add-new"
-
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
@@ -40,17 +38,6 @@ export function DataTable<TData, TValue>({
 
     return (
         <div className="flex flex-col gap-5">
-            {/* Add New Job Button */}
-            <div>
-                <Item variant="outline">
-                    <ItemContent>
-                        <ItemTitle>Add a new Job</ItemTitle>
-                    </ItemContent>
-                    <ItemActions>
-                        <AddNew />
-                    </ItemActions>
-                </Item>
-            </div>
             <div className="overflow-hidden rounded-md border">
                 <Table>
                     <TableHeader className="bg-[#f8f8ff]">

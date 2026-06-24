@@ -22,6 +22,41 @@
       "when": 1781775849247,
       "tag": "0002_misty_molly_hayes",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1782282976971,
+      "tag": "0003_wide_yellowjacket",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1782284134582,
+      "tag": "0004_slimy_kabuki",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1782297394825,
+      "tag": "0005_odd_patch",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1782297668346,
+      "tag": "0006_parched_black_tom",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1782297848268,
+      "tag": "0007_yellow_meggan",
+      "breakpoints": true
     }
   ]
 }

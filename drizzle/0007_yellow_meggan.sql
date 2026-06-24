@@ -1,0 +1,1 @@
+ALTER TABLE "history" ALTER COLUMN "finishDate" SET DEFAULT now();

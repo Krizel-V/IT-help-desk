@@ -24,7 +24,7 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Queue } from "../columns"
-
+import { IconEdit } from "@tabler/icons-react";
 
 export default function EditQueue({queue}:{queue:Queue}) {
 
@@ -38,7 +38,9 @@ export default function EditQueue({queue}:{queue:Queue}) {
     return (
         <Dialog>
             <form>
-                <DialogTrigger>Edit</DialogTrigger>
+                <DialogTrigger className="text-blue-950 hover:scale-105">
+                    <IconEdit />
+                </DialogTrigger>
                 <DialogContent className="sm:max-w-sm">
                     <DialogHeader>
                         <DialogTitle>Edit Job Details</DialogTitle>
