@@ -27,7 +27,7 @@ const links = [
 
 export function NavLinks() {
     const pathname = usePathname();
-    const isActive = "border-l-2 border-solid border-indigo-700 bg-indigo-100 text-indigo-700"
+    const isActive = "border-l-2 border-solid border-[#f0f3fa] bg-[#65737e] text-[#f0f3fa]"
 
     return (
         <>

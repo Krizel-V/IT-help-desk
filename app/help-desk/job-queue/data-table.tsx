@@ -42,7 +42,7 @@ export function DataTable<TData, TValue>({
         <div className="flex flex-col gap-5">
             {/* Add New Job Button */}
             <div>
-                <Item variant="outline">
+                <Item variant="outline" className="bg-white">
                     <ItemContent>
                         <ItemTitle>Add a new Job</ItemTitle>
                     </ItemContent>
@@ -53,7 +53,7 @@ export function DataTable<TData, TValue>({
             </div>
             <div className="overflow-hidden rounded-md border">
                 <Table>
-                    <TableHeader className="bg-[#f8f8ff]">
+                    <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {

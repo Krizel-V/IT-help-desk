@@ -1,19 +1,9 @@
 "use client";
 
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
+import PostDate from '@/components/date';
 import { ColumnDef } from "@tanstack/react-table";
-import { Button } from "@/components/ui/button";
 
-import EditQueue from "./queue-actions/edit";
-import MarkCompleted from "./queue-actions/mark-completed";
+import View from "./queue-actions/view-details";
 
 export type Queue = {
     id: number
@@ -21,7 +11,7 @@ export type Queue = {
     assignee: string
     priority: "High" | "Medium" | "Low"
     status: "In Progress" | "Open" | "On Hold"
-    // created: string
+    dateCreated: string
 }
 
 export const columns: ColumnDef<Queue>[] = [
@@ -41,34 +31,21 @@ export const columns: ColumnDef<Queue>[] = [
         accessorKey: "status",
         header: "Status",
     },
-    // {
-    //     accessorKey: "created",
-    //     header: "Date Created",
-    // },
+    {
+        accessorKey: "dateCreated",
+        header: "Date Created",
+        cell: ({ row }) => {
+            const dateValue = row.original.dateCreated;
+            return <PostDate dateString={dateValue} />;
+        },
+    },
     {
         id: "actions",
         cell: ({ row }) => {
             const queue = row.original
 
             return (
-                // <DropdownMenu>
-                //     <DropdownMenuTrigger asChild>
-                //         <Button variant="outline">...</Button>
-                //     </DropdownMenuTrigger>
-
-                //     <DropdownMenuContent align="end" className="border p-2">
-                //         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                //         <DropdownMenuSeparator />
-                //         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                //             <EditQueue queue={queue} />
-                //         </DropdownMenuItem>
-                //         <DropdownMenuItem>Cancel</DropdownMenuItem>
-                //     </DropdownMenuContent>
-                // </DropdownMenu>
-                <div className="flex gap-5 justify-end ml-auto pr-10">
-                    <EditQueue queue={queue} />
-                    <MarkCompleted queue={queue} />
-                </div>
+                <View queue={queue} />
             )
         },
     },

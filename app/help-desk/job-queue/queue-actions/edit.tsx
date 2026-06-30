@@ -26,7 +26,7 @@ import { useState } from "react";
 import { Queue } from "../columns"
 import { IconEdit } from "@tabler/icons-react";
 
-export default function EditQueue({queue}:{queue:Queue}) {
+export default function EditQueue({ queue }: { queue: Queue }) {
 
     const [color, setColor] = useState(queue.priority.toString());
     const colors = {
@@ -38,9 +38,11 @@ export default function EditQueue({queue}:{queue:Queue}) {
     return (
         <Dialog>
             <form>
-                <DialogTrigger className="text-blue-950 hover:scale-105">
-                    <IconEdit />
-                </DialogTrigger>
+                <Button variant="outline" asChild>
+                    <DialogTrigger className="text-blue-950 hover:scale-105">
+                        <IconEdit />
+                    </DialogTrigger>
+                </Button>
                 <DialogContent className="sm:max-w-sm">
                     <DialogHeader>
                         <DialogTitle>Edit Job Details</DialogTitle>

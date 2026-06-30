@@ -6,9 +6,11 @@ import {
     SidebarFooter,
     SidebarHeader,
 } from "@/components/ui/sidebar"
+import { Button } from "@/components/ui/button";
 import { NavLinks } from "@/components/nav-links";
 import { IconDeviceDesktop } from "@tabler/icons-react";
 
+import Link from 'next/link';
 export function UiSidebar() {
     return (
         <Sidebar>
@@ -18,7 +20,13 @@ export function UiSidebar() {
             <SidebarContent>
                 <NavLinks />
             </SidebarContent>
-            <SidebarFooter />
+            <SidebarFooter>
+                <Button variant="outline" className="text-black">
+                    <Link href="http://localhost:3000/">
+                        Log out
+                    </Link>
+                </Button>
+            </SidebarFooter>
         </Sidebar>
     )
 }

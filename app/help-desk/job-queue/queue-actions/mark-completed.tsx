@@ -13,6 +13,8 @@ import {
 import { IconCircleCheck } from "@tabler/icons-react";
 import { Queue } from "../columns";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner"
+import { Button } from "@/components/ui/button";
 
 export default function MarkCompleted({ queue }: { queue: Queue }) {
 
@@ -31,10 +33,7 @@ export default function MarkCompleted({ queue }: { queue: Queue }) {
                 }),
             });
 
-            const data = await response.json();
-
             if (response.ok) {
-
                 //Insert to history table
                 const res = await fetch("/api/history", {
                     method: "POST",
@@ -44,7 +43,7 @@ export default function MarkCompleted({ queue }: { queue: Queue }) {
                         finishDate: new Date().toString(),
                     }),
                 });
-
+                toast.success("Successfully marked as completed!");
             }
         } catch (err) {
             console.error(err);
@@ -55,9 +54,11 @@ export default function MarkCompleted({ queue }: { queue: Queue }) {
 
     return (
         <AlertDialog>
-            <AlertDialogTrigger className="text-green-700 hover:scale-105">
-                <IconCircleCheck />
-            </AlertDialogTrigger>
+            <Button variant="outline" className="hover:bg-green-800 hover:text-white" asChild>
+                <AlertDialogTrigger className="w-full bg-green-700 text-white border border-green-700">
+                    Mark as Completed
+                </AlertDialogTrigger>
+            </Button>
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -67,7 +68,7 @@ export default function MarkCompleted({ queue }: { queue: Queue }) {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleEdit}>
+                    <AlertDialogAction onClick={() => { handleEdit() }}>
                         Mark as Completed
                     </AlertDialogAction>
                 </AlertDialogFooter>

@@ -1,7 +1,6 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { Button } from "@/components/ui/button";
 import PostDate from '@/components/date';
 
 export type Queue = {
@@ -18,23 +17,23 @@ export type Queue = {
 
 export const columns: ColumnDef<Queue>[] = [
     {
-        accessorKey: "users.job",
+        accessorKey: "jobQueue.job",
         header: "Job",
     },
     {
-        accessorKey: "users.assignee",
+        accessorKey: "jobQueue.assignee",
         header: "Assignee",
     },
     {
-        accessorKey: "users.priority",
+        accessorKey: "jobQueue.priority",
         header: "Priority",
     },
     {
-        accessorKey: "users.status",
+        accessorKey: "jobQueue.status",
         header: "Status",
     },
     // {
-    //     accessorKey: "users.created",
+    //     accessorKey: "jobQueue.created",
     //     header: "Date Created",
     // },
     {

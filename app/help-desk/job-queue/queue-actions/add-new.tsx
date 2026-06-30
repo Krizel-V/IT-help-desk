@@ -24,6 +24,7 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function AddNew() {
     const [open, setOpen] = useState(false);
@@ -45,7 +46,8 @@ export default function AddNew() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),
         });
-
+        toast.success("Successfully added!")
+        
         if (!res.ok) return console.error(await res.text());
 
         setOpen(false);
